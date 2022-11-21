@@ -1,0 +1,3 @@
+class VisitorLogService {
+}
+export {};
