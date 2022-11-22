@@ -9,6 +9,7 @@ app.use(express.json())
 // get routes
 import adminRoutes from './Admin/admin.routes.js';
 import userRoutes from './User/user.routes.js';
+import visitorLogRoutes from './VisitorLog/visitorlog.routes.js';
 
 
 
@@ -24,3 +25,4 @@ app.get('/api', (req: Request, res: Response) => {
 
 app.use('/api/admin', adminRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/visitorlog', visitorLogRoutes)
