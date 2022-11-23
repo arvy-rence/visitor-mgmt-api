@@ -32,7 +32,6 @@ export class VisitorLogService {
                     .insert([
                     {
                         qr_code: visitorLog.qr_code,
-                        time_in: visitorLog.time_in,
                         location: visitorLog.location
                     }
                 ]);
