@@ -43,7 +43,7 @@ export class UserService {
     }
     createUserInfo(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { image, salt, qr_code } = generateNewQR(user.full_name, user.email);
+            const { salt, qr_code } = generateNewQR(user.full_name, user.email);
             try {
                 return yield client
                     .from("user")

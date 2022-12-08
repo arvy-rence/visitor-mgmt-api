@@ -32,7 +32,7 @@ export class UserService {
     }
 
     async createUserInfo(user: CreateUserDTO) {
-        const {image, salt, qr_code} = generateNewQR(user.full_name, user.email)
+        const {salt, qr_code} = generateNewQR(user.full_name, user.email)
 
         try {
             return await client

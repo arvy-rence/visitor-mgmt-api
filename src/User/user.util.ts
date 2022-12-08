@@ -1,16 +1,9 @@
-import axios from 'axios';
-
-// const logo = "https://i.ibb.co/w73H9FS/3.jpg";
-
 export function generateNewQR(full_name: string, email: string) {
     const salt = createSaltForQR();
 
     const infoString = generateInfoString(full_name, email, salt);
 
-    const URL = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${infoString}`
-
     return {
-        image: URL,
         salt: salt,
         qr_code: infoString,
     }
@@ -28,6 +21,6 @@ export function generateInfoString(full_name: string, email: string, salt: strin
 }
 
 (() => {
-    const {image, salt, qr_code} = generateNewQR("John Doe", "rncy29@gmail.com")
-    console.table({image, salt, qr_code})
+    // const {salt, qr_code} = generateNewQR("John Doe", "rncy29@gmail.com")
+    // console.table({image, salt, qr_code})
 })()

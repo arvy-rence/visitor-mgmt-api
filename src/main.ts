@@ -13,7 +13,7 @@ import visitorLogRoutes from './VisitorLog/visitorlog.routes.js';
 
 
 
-app.listen(process.env.PORT || 5082, () => {
+app.listen(<number><unknown>process.env.PORT || 5082, () => {
     console.log(`Server is running on ${process.env.PORT || 5082}`)
 })
 
