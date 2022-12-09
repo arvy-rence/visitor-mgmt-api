@@ -21,6 +21,6 @@ export function generateInfoString(full_name: string, email: string, salt: strin
 }
 
 (() => {
-    // const {salt, qr_code} = generateNewQR("John Doe", "rncy29@gmail.com")
-    // console.table({image, salt, qr_code})
+    const {salt, qr_code} = generateNewQR("John Doe", "rncy29@gmail.com")
+    console.table({salt, qr_code})
 })()

@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/', getAllUsers);
 router.get('/:email', getUserByEmail);
 router.get('/qr/:qr_code', getUserByInfoString);
-router.post('/', createUser);
+router.patch('/:email', createUser);
 router.post('/confirm', signupUser);
 export default router;

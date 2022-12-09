@@ -23,6 +23,12 @@ export class UserService {
         })
 
         if (error === null) {
+            const response = await client.from("user").insert([
+                {
+                    id: data?.user?.id,
+                    email: email,
+                }
+            ])
             return data;
         } else {
             return {
@@ -31,16 +37,15 @@ export class UserService {
         }
     }
 
-    async createUserInfo(user: CreateUserDTO) {
+    async updateUserInfo(user: CreateUserDTO) {
         const {salt, qr_code} = generateNewQR(user.full_name, user.email)
 
         try {
             return await client
                 .from("user")
-                .insert([
+                .update(
                     {
                         full_name: user.full_name,
-                        email: user.email,
                         contact_number: user.contact_number,
                         birthday: user.birthday,
                         is_valenzuela_resident: user.is_valenzuela_resident,
@@ -50,8 +55,13 @@ export class UserService {
                         sex: user.sex,
                         qr_code: qr_code,
                         salt: salt,
+                        province: user.province
                     }
-                ])
+                )
+                .eq(
+                    "email",
+                    user.email
+                )
         } catch (e) {
             return {
                 error: e

@@ -12,15 +12,15 @@ export const getAllUsers = async (req: Request, res: Response): Promise<any> => 
 }
 
 export const createUser = async (req: Request<{}, {}, CreateUserDTO>, res: Response): Promise<any> => {
-    const response = await userService.createUserInfo(req.body);
+    const response = await userService.updateUserInfo(req.body);
     if (response.error === null) {
         res.status(201).json({
-            message: "User created",
+            message: "User updated",
             data: response
         })
     } else {
         res.status(401).json({
-            message: "User not created",
+            message: "User not updated",
             error: response.error
         })
     }

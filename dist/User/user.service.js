@@ -26,12 +26,19 @@ export class UserService {
         });
     }
     signUpUser(email, password) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             let { data, error } = yield client.auth.signUp({
                 email: email,
                 password: password
             });
             if (error === null) {
+                const response = yield client.from("user").insert([
+                    {
+                        id: (_a = data === null || data === void 0 ? void 0 : data.user) === null || _a === void 0 ? void 0 : _a.id,
+                        email: email,
+                    }
+                ]);
                 return data;
             }
             else {
@@ -41,27 +48,26 @@ export class UserService {
             }
         });
     }
-    createUserInfo(user) {
+    updateUserInfo(user) {
         return __awaiter(this, void 0, void 0, function* () {
             const { salt, qr_code } = generateNewQR(user.full_name, user.email);
             try {
                 return yield client
                     .from("user")
-                    .insert([
-                    {
-                        full_name: user.full_name,
-                        email: user.email,
-                        contact_number: user.contact_number,
-                        birthday: user.birthday,
-                        is_valenzuela_resident: user.is_valenzuela_resident,
-                        barangay: user.barangay,
-                        city: user.city,
-                        is_active: user.is_active,
-                        sex: user.sex,
-                        qr_code: qr_code,
-                        salt: salt,
-                    }
-                ]);
+                    .update({
+                    full_name: user.full_name,
+                    contact_number: user.contact_number,
+                    birthday: user.birthday,
+                    is_valenzuela_resident: user.is_valenzuela_resident,
+                    barangay: user.barangay,
+                    city: user.city,
+                    is_active: user.is_active,
+                    sex: user.sex,
+                    qr_code: qr_code,
+                    salt: salt,
+                    province: user.province
+                })
+                    .eq("email", user.email);
             }
             catch (e) {
                 return {

@@ -15,16 +15,16 @@ export const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, funct
     });
 });
 export const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield userService.createUserInfo(req.body);
+    const response = yield userService.updateUserInfo(req.body);
     if (response.error === null) {
         res.status(201).json({
-            message: "User created",
+            message: "User updated",
             data: response
         });
     }
     else {
         res.status(401).json({
-            message: "User not created",
+            message: "User not updated",
             error: response.error
         });
     }
