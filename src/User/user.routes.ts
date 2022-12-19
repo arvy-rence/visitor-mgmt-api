@@ -3,7 +3,8 @@ import {
     createUser,
     getUserByEmail,
     getUserByInfoString,
-    signupUser
+    signupUser,
+    loginUser
 } from "./user.controller.js";
 
 import express, {Router} from "express";
@@ -19,6 +20,8 @@ router.get('/:email', getUserByEmail);
 router.get('/qr/:qr_code', getUserByInfoString);
 
 router.patch('/:email', createUser);
+
 router.post('/confirm', signupUser);
+router.post('/', loginUser)
 
 export default router;

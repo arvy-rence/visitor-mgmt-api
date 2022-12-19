@@ -47,3 +47,13 @@ export const signupUser = async (req: Request, res: Response): Promise<any> => {
         data: await userService.signUpUser(email, password)
     })
 }
+
+export const loginUser = async (req: Request, res: Response): Promise<any> => {
+    const {
+        email,
+        password
+    } = req.body
+    res.status(200).json({
+        data: await userService.loginUser(email, password)
+    })
+}

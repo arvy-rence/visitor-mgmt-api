@@ -38,6 +38,8 @@ export class UserService {
     }
 
     async updateUserInfo(user: CreateUserDTO) {
+        // remove spaces from full_name
+        user.full_name = user.full_name.replace(/\s/g, "");
         const {salt, qr_code} = generateNewQR(user.full_name, user.email)
 
         try {
@@ -55,7 +57,9 @@ export class UserService {
                         sex: user.sex,
                         qr_code: qr_code,
                         salt: salt,
-                        province: user.province
+                        province: user.province,
+                        is_student: user.is_student,
+                        school_code: user.school_code
                     }
                 )
                 .eq(
@@ -88,6 +92,17 @@ export class UserService {
             .from("user")
             .select("*")
             .eq("qr_code", info_string);
+        if (error === null) {
+            return user;
+        } else {
+            return {
+                error: error,
+            };
+        }
+    }
+
+    async loginUser(email: string, password: string) {
+        const {data: user, error} = await client.auth.signInWithPassword({email, password})
         if (error === null) {
             return user;
         } else {

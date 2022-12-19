@@ -1,4 +1,4 @@
-import { getAllUsers, createUser, getUserByEmail, getUserByInfoString, signupUser } from "./user.controller.js";
+import { getAllUsers, createUser, getUserByEmail, getUserByInfoString, signupUser, loginUser } from "./user.controller.js";
 import express from "express";
 const router = express.Router();
 /**
@@ -9,4 +9,5 @@ router.get('/:email', getUserByEmail);
 router.get('/qr/:qr_code', getUserByInfoString);
 router.patch('/:email', createUser);
 router.post('/confirm', signupUser);
+router.post('/', loginUser);
 export default router;
