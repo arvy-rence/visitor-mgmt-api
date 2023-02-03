@@ -28,3 +28,13 @@ export const createVisitorLog = (req, res) => __awaiter(void 0, void 0, void 0, 
         });
     }
 });
+export const getVisitorLogsForToday = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
+        data: yield visitorLogService.getVisitorLogsForToday()
+    });
+});
+export const getGenderCountPerMonth = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
+        data: yield visitorLogService.getGenderCountPerMonth()
+    });
+});

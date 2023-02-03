@@ -57,3 +57,21 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
         data: await userService.loginUser(email, password)
     })
 }
+
+export const getGenderCount = async (req: Request, res: Response): Promise<any> => {
+    res.status(200).json({
+        data: await userService.getGenderCount()
+    })
+}
+
+export const getUserCountByBarangay = async (req: Request, res: Response): Promise<any> => {
+    res.status(200).json({
+        data: await userService.getUserCountByBarangay()
+    })
+}
+
+export const getUserCountByAgeGroup = async (req: Request, res: Response): Promise<any> => {
+    res.status(200).json({
+        data: await userService.getUserCountByAgeGroup()
+    })
+}

@@ -23,3 +23,15 @@ export const createVisitorLog = async (req: Request<{}, {}, CreateVisitorLogDTO>
         })
     }
 }
+
+export const getVisitorLogsForToday = async (req: Request, res: Response): Promise<any> => {
+    res.status(200).json({
+        data: await visitorLogService.getVisitorLogsForToday()
+    });
+}
+
+export const getGenderCountPerMonth = async (req: Request, res: Response): Promise<any> => {
+    res.status(200).json({
+        data: await visitorLogService.getGenderCountPerMonth()
+    });
+}

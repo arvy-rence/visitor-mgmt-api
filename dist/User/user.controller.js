@@ -51,3 +51,18 @@ export const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
         data: yield userService.loginUser(email, password)
     });
 });
+export const getGenderCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
+        data: yield userService.getGenderCount()
+    });
+});
+export const getUserCountByBarangay = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
+        data: yield userService.getUserCountByBarangay()
+    });
+});
+export const getUserCountByAgeGroup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
+        data: yield userService.getUserCountByAgeGroup()
+    });
+});
