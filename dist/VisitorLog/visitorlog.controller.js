@@ -38,3 +38,8 @@ export const getGenderCountPerMonth = (req, res) => __awaiter(void 0, void 0, vo
         data: yield visitorLogService.getGenderCountPerMonth()
     });
 });
+export const getBarangayCountPerMonth = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.status(200).json({
+        data: yield visitorLogService.getBarangayCountPerMonth()
+    });
+});

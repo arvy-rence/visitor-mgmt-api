@@ -1,4 +1,4 @@
-import {createVisitorLog, getAllVisitorLogs, getGenderCountPerMonth, getVisitorLogsForToday} from "./visitorlog.controller.js";
+import {createVisitorLog, getAllVisitorLogs, getBarangayCountPerMonth, getGenderCountPerMonth, getVisitorLogsForToday} from "./visitorlog.controller.js";
 import express, {Router} from "express";
 
 const router: Router = express.Router()
@@ -10,6 +10,7 @@ const router: Router = express.Router()
 router.get('/', getAllVisitorLogs);
 router.get('/today', getVisitorLogsForToday)
 router.get('/gender-per-month', getGenderCountPerMonth)
+router.get('/barangay-per-month', getBarangayCountPerMonth)
 
 router.post('/', createVisitorLog);
 

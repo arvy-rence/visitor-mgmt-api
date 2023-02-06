@@ -66,3 +66,15 @@ export const getUserCountByAgeGroup = (req, res) => __awaiter(void 0, void 0, vo
         data: yield userService.getUserCountByAgeGroup()
     });
 });
+export const disableUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { users } = req.body;
+    res.status(200).json({
+        data: yield userService.disableUsers(users)
+    });
+});
+export const enableUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { users } = req.body;
+    res.status(200).json({
+        data: yield userService.enableUsers(users)
+    });
+});

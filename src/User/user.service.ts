@@ -6,7 +6,8 @@ export class UserService {
     async getAllUsers() {
         const { data: users, error } = await client
             .from("user")
-            .select("*");
+            .select("*")
+            .order("full_name", { ascending: true });
         if (error === null) {
             return users;
         } else {
@@ -39,7 +40,7 @@ export class UserService {
 
     async updateUserInfo(user: CreateUserDTO) {
         // remove spaces from full_name
-        user.full_name = user.full_name.replace(/\s/g, "");
+        user.full_name = user.full_name.split('').filter(e => e.trim().length).join('');
         const {salt, qr_code} = generateNewQR(user.full_name, user.email)
 
         try {
@@ -215,6 +216,40 @@ export class UserService {
                 },
             ]
             return ageGroups
+        }
+    }
+
+    async disableUsers(users: any[]) {
+        users.forEach(async (user) => {
+            let {error} = await client
+                .from("user")
+                .update({is_active: false})
+                .eq("id",user)
+            if (error !== null) {
+                return {
+                    error: error
+                }
+            }
+        })
+        return {
+            data: "success"
+        }
+    }
+
+    async enableUsers(users: any[]) {
+        users.forEach(async (user) => {
+            let {error} = await client
+                .from("user")
+                .update({is_active: true})
+                .eq("id",user)
+            if (error !== null) {
+                return {
+                    error: error
+                }
+            }
+        })
+        return {
+            data: "success"
         }
     }
 }

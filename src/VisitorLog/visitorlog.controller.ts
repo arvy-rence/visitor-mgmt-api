@@ -35,3 +35,9 @@ export const getGenderCountPerMonth = async (req: Request, res: Response): Promi
         data: await visitorLogService.getGenderCountPerMonth()
     });
 }
+
+export const getBarangayCountPerMonth = async (req: Request, res: Response): Promise<any> => {
+    res.status(200).json({
+        data: await visitorLogService.getBarangayCountPerMonth()
+    });
+}

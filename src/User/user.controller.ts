@@ -75,3 +75,23 @@ export const getUserCountByAgeGroup = async (req: Request, res: Response): Promi
         data: await userService.getUserCountByAgeGroup()
     })
 }
+
+export const disableUsers = async (req: Request, res: Response): Promise<any> => {
+    const {
+        users
+    } = req.body
+    
+    res.status(200).json({
+        data: await userService.disableUsers(users)
+    })
+}
+
+export const enableUsers = async (req: Request, res: Response): Promise<any> => {
+    const {
+        users
+    } = req.body
+    
+    res.status(200).json({
+        data: await userService.enableUsers(users)
+    })
+}

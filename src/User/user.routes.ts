@@ -7,7 +7,9 @@ import {
     loginUser,
     getGenderCount,
     getUserCountByBarangay,
-    getUserCountByAgeGroup
+    getUserCountByAgeGroup,
+    disableUsers,
+    enableUsers
 } from "./user.controller.js";
 
 import express, {Router} from "express";
@@ -26,6 +28,8 @@ router.get('/info/barangay', getUserCountByBarangay)
 router.get('/info/agegroup', getUserCountByAgeGroup)
 
 router.patch('/:email', createUser);
+router.patch('/action/disable', disableUsers)
+router.patch('/action/enable', enableUsers)
 
 router.post('/confirm', signupUser);
 router.post('/', loginUser)

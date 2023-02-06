@@ -1,4 +1,4 @@
-import { getAllUsers, createUser, getUserByEmail, getUserByInfoString, signupUser, loginUser, getGenderCount, getUserCountByBarangay, getUserCountByAgeGroup } from "./user.controller.js";
+import { getAllUsers, createUser, getUserByEmail, getUserByInfoString, signupUser, loginUser, getGenderCount, getUserCountByBarangay, getUserCountByAgeGroup, disableUsers, enableUsers } from "./user.controller.js";
 import express from "express";
 const router = express.Router();
 /**
@@ -11,6 +11,8 @@ router.get('/gender/count', getGenderCount);
 router.get('/info/barangay', getUserCountByBarangay);
 router.get('/info/agegroup', getUserCountByAgeGroup);
 router.patch('/:email', createUser);
+router.patch('/action/disable', disableUsers);
+router.patch('/action/enable', enableUsers);
 router.post('/confirm', signupUser);
 router.post('/', loginUser);
 export default router;

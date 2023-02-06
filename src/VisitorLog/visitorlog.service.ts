@@ -296,8 +296,60 @@ export class VisitorLogService {
                 error: januaryError
             }
         }
+    }
+
+    async getBarangayCountPerMonth() {
+        const month = new Date().getMonth()
+        
+        switch(month) {
+            case 0:
+                const {data: jan} = await client.from('barangay_jan').select('*')
+                return jan
+
+            case 1:
+                const {data: feb} = await client.from('barangay_feb').select('*')
+                return feb
+
+            case 2:
+                const {data: mar} = await client.from('barangay_mar').select('*')
+                return mar
+
+            case 3:
+                const {data: apr} = await client.from('barangay_apr').select('*')
+                return apr
 
 
+            case 4:
+                const {data: may} = await client.from('barangay_apr').select('*')
+                return may
 
+            case 5:
+                const {data: jun} = await client.from('barangay_may').select('*')
+                return jun
+
+            case 6:
+                const {data: jul} = await client.from('barangay_jun').select('*')
+                return jul
+
+            case 7:
+                const {data: aug} = await client.from('barangay_jul').select('*')
+                return aug
+
+            case 8:
+                const {data: sept} = await client.from('barangay_aug').select('*')
+                return sept
+
+            case 9:
+                const {data: oct} = await client.from('barangay_sep').select('*')
+                return oct
+
+            case 10:
+                const {data: nov} = await client.from('barangay_oct').select('*')
+                return nov
+
+            case 11:
+                const {data: dec} = await client.from('barangay_nov').select('*')
+                return dec
+        }
     }
 }

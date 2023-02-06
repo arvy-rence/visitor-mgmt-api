@@ -14,7 +14,8 @@ export class UserService {
         return __awaiter(this, void 0, void 0, function* () {
             const { data: users, error } = yield client
                 .from("user")
-                .select("*");
+                .select("*")
+                .order("full_name", { ascending: true });
             if (error === null) {
                 return users;
             }
@@ -51,7 +52,7 @@ export class UserService {
     updateUserInfo(user) {
         return __awaiter(this, void 0, void 0, function* () {
             // remove spaces from full_name
-            user.full_name = user.full_name.replace(/\s/g, "");
+            user.full_name = user.full_name.split('').filter(e => e.trim().length).join('');
             const { salt, qr_code } = generateNewQR(user.full_name, user.email);
             try {
                 return yield client
@@ -234,6 +235,42 @@ export class UserService {
                 ];
                 return ageGroups;
             }
+        });
+    }
+    disableUsers(users) {
+        return __awaiter(this, void 0, void 0, function* () {
+            users.forEach((user) => __awaiter(this, void 0, void 0, function* () {
+                let { error } = yield client
+                    .from("user")
+                    .update({ is_active: false })
+                    .eq("id", user);
+                if (error !== null) {
+                    return {
+                        error: error
+                    };
+                }
+            }));
+            return {
+                data: "success"
+            };
+        });
+    }
+    enableUsers(users) {
+        return __awaiter(this, void 0, void 0, function* () {
+            users.forEach((user) => __awaiter(this, void 0, void 0, function* () {
+                let { error } = yield client
+                    .from("user")
+                    .update({ is_active: true })
+                    .eq("id", user);
+                if (error !== null) {
+                    return {
+                        error: error
+                    };
+                }
+            }));
+            return {
+                data: "success"
+            };
         });
     }
 }
