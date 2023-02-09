@@ -95,3 +95,14 @@ export const enableUsers = async (req: Request, res: Response): Promise<any> => 
         data: await userService.enableUsers(users)
     })
 }
+
+export const editUserByAdmin = async(req: any, res: any): Promise<any> => {
+    const {
+        id, 
+        fullName,
+        birthday
+    } = req.body
+    res.status(204).json({
+        data: await userService.updateUserViaAdmin(id, fullName, birthday)
+    })
+}

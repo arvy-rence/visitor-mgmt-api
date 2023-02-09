@@ -46,23 +46,21 @@ export class UserService {
         try {
             return await client
                 .from("user")
-                .update(
-                    {
-                        full_name: user.full_name,
-                        contact_number: user.contact_number,
-                        birthday: user.birthday,
-                        is_valenzuela_resident: user.is_valenzuela_resident,
-                        barangay: user.barangay,
-                        city: user.city,
-                        is_active: user.is_active,
-                        sex: user.sex,
-                        qr_code: qr_code,
-                        salt: salt,
-                        province: user.province,
-                        is_student: user.is_student,
-                        school_code: user.school_code
-                    }
-                )
+                .update({
+                    full_name: user.full_name,
+                    contact_number: user.contact_number,
+                    birthday: user.birthday,
+                    is_valenzuela_resident: user.is_valenzuela_resident,
+                    barangay: user.barangay,
+                    city: user.city,
+                    is_active: user.is_active,
+                    sex: user.sex,
+                    qr_code: qr_code,
+                    salt: salt,
+                    province: user.province,
+                    is_student: user.is_student,
+                    school_code: user.school_code
+                })
                 .eq(
                     "email",
                     user.email
@@ -250,6 +248,22 @@ export class UserService {
         })
         return {
             data: "success"
+        }
+    }
+
+    async updateUserViaAdmin(id: string, fullName: string, birthday: any) {
+        try {
+            return await client
+            .from("user")
+            .update({
+                full_name: fullName,
+                birthday: birthday
+            })
+            .eq("id", id)
+        } catch (e) {
+            return {
+                error: e
+            }
         }
     }
 }

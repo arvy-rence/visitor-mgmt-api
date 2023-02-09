@@ -273,4 +273,22 @@ export class UserService {
             };
         });
     }
+    updateUserViaAdmin(id, fullName, birthday) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield client
+                    .from("user")
+                    .update({
+                    full_name: fullName,
+                    birthday: birthday
+                })
+                    .eq("id", id);
+            }
+            catch (e) {
+                return {
+                    error: e
+                };
+            }
+        });
+    }
 }

@@ -78,3 +78,9 @@ export const enableUsers = (req, res) => __awaiter(void 0, void 0, void 0, funct
         data: yield userService.enableUsers(users)
     });
 });
+export const editUserByAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id, fullName, birthday } = req.body;
+    res.status(204).json({
+        data: yield userService.updateUserViaAdmin(id, fullName, birthday)
+    });
+});
