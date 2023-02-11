@@ -52,8 +52,8 @@ export class UserService {
     updateUserInfo(user) {
         return __awaiter(this, void 0, void 0, function* () {
             // remove spaces from full_name
-            user.full_name = user.full_name.split('').filter(e => e.trim().length).join('');
-            const { salt, qr_code } = generateNewQR(user.full_name, user.email);
+            let full_name = user.full_name.split('').filter(e => e.trim().length).join('');
+            const { salt, qr_code } = generateNewQR(full_name, user.email);
             try {
                 return yield client
                     .from("user")
@@ -65,7 +65,7 @@ export class UserService {
                     barangay: user.barangay,
                     city: user.city,
                     is_active: user.is_active,
-                    sex: user.sex,
+                    sex_int: user.sex,
                     qr_code: qr_code,
                     salt: salt,
                     province: user.province,
