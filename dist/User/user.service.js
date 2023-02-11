@@ -81,6 +81,28 @@ export class UserService {
             }
         });
     }
+    upsertUser(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield client
+                    .from("user")
+                    .update({
+                    province: user.province,
+                    city: user.city,
+                    barangay: user.barangay,
+                    sex_int: user.sex,
+                    is_student: user.is_student,
+                    school_code: user.school_code,
+                })
+                    .eq("email", user.email);
+            }
+            catch (e) {
+                return {
+                    error: e
+                };
+            }
+        });
+    }
     getSingleUser(email) {
         return __awaiter(this, void 0, void 0, function* () {
             const { data: user, error } = yield client

@@ -72,6 +72,30 @@ export class UserService {
         }
     }
 
+    async upsertUser(user: CreateUserDTO) {
+        try {
+            return await client
+                .from("user")
+                .update({
+                    province: user.province,
+                    city: user.city,
+                    barangay: user.barangay,
+                    sex_int: user.sex,
+                    is_student: user.is_student,
+                    school_code: user.school_code,
+                })
+                .eq(
+                    "email",
+                    user.email
+                )
+        } catch (e) {
+            return {
+                error: e
+            }
+        }
+    }
+
+
     async getSingleUser(email: string) {
         const { data: user, error } = await client
             .from("user")

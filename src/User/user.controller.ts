@@ -26,6 +26,21 @@ export const createUser = async (req: Request<{}, {}, CreateUserDTO>, res: Respo
     }
 }
 
+export const upsertUser = async (req: Request<{}, {}, CreateUserDTO>, res: Response): Promise<any> => {
+    const response = await userService.upsertUser(req.body);
+    if (response.error === null) {
+        res.status(201).json({
+            message: "User updated",
+            data: response
+        })
+    } else {
+        res.status(401).json({
+            message: "User not updated",
+            error: response.error
+        })
+    }
+}
+
 export const getUserByEmail = async (req: Request, res: Response): Promise<any> => {
     res.status(200).json({
         data: await userService.getSingleUser(req.params.email)

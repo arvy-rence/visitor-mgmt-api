@@ -29,6 +29,21 @@ export const createUser = (req, res) => __awaiter(void 0, void 0, void 0, functi
         });
     }
 });
+export const upsertUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield userService.upsertUser(req.body);
+    if (response.error === null) {
+        res.status(201).json({
+            message: "User updated",
+            data: response
+        });
+    }
+    else {
+        res.status(401).json({
+            message: "User not updated",
+            error: response.error
+        });
+    }
+});
 export const getUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json({
         data: yield userService.getSingleUser(req.params.email)
