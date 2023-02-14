@@ -34,13 +34,14 @@ export class VisitorLogService {
 
     // get visitor logs for today
     async getVisitorLogsForToday() {
-        const dateToday = new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
+        const dateToday = new Date(new Date().setHours(2, 0, 0, 0)).toISOString()
         const {data: visitorLog, error} = await client
             .from('visitor_log')
             .select('*')
             .gte('created_at', dateToday)
         if (error === null) {
-            return visitorLog.length
+            let count = visitorLog.length
+            return count
         } else {
             return {
                 error: error
@@ -350,6 +351,37 @@ export class VisitorLogService {
             case 11:
                 const {data: dec} = await client.from('barangay_nov').select('*')
                 return dec
+        }
+    }
+
+    async getVisitorLogsPerLocation(date: any = new Date().toISOString()) {
+        const dateEntered = new Date(date).toISOString()
+        const {data: visitorLog, error: visitorLogError} = await client
+            .from('visitor_log')
+            .select('location')
+            .gte('created_at', dateEntered)
+
+        let counts: any = {
+            entrance: 0,
+            childrensArea: 0,
+            generalCollections: 0
+        }
+
+        if (visitorLogError===null) {
+            visitorLog?.forEach((log: any) => {
+                if (log.location === 'Entrance') {
+                    counts.entrance += 1
+                } else if (log.location === "Children's Area") {
+                    counts.childrensArea += 1
+                } else if (log.location === 'General Collections') {
+                    counts.generalCollections += 1
+                }
+            })
+            return counts
+        } else {
+            return {
+                error: visitorLogError
+            } 
         }
     }
 }

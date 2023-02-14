@@ -46,13 +46,14 @@ export class VisitorLogService {
     // get visitor logs for today
     getVisitorLogsForToday() {
         return __awaiter(this, void 0, void 0, function* () {
-            const dateToday = new Date(new Date().setHours(0, 0, 0, 0)).toISOString();
+            const dateToday = new Date(new Date().setHours(2, 0, 0, 0)).toISOString();
             const { data: visitorLog, error } = yield client
                 .from('visitor_log')
                 .select('*')
                 .gte('created_at', dateToday);
             if (error === null) {
-                return visitorLog.length;
+                let count = visitorLog.length;
+                return count;
             }
             else {
                 return {
@@ -353,6 +354,39 @@ export class VisitorLogService {
                 case 11:
                     const { data: dec } = yield client.from('barangay_nov').select('*');
                     return dec;
+            }
+        });
+    }
+    getVisitorLogsPerLocation(date = new Date().toISOString()) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const dateEntered = new Date(date).toISOString();
+            const { data: visitorLog, error: visitorLogError } = yield client
+                .from('visitor_log')
+                .select('location')
+                .gte('created_at', dateEntered);
+            let counts = {
+                entrance: 0,
+                childrensArea: 0,
+                generalCollections: 0
+            };
+            if (visitorLogError === null) {
+                visitorLog === null || visitorLog === void 0 ? void 0 : visitorLog.forEach((log) => {
+                    if (log.location === 'Entrance') {
+                        counts.entrance += 1;
+                    }
+                    else if (log.location === "Children's Area") {
+                        counts.childrensArea += 1;
+                    }
+                    else if (log.location === 'General Collections') {
+                        counts.generalCollections += 1;
+                    }
+                });
+                return counts;
+            }
+            else {
+                return {
+                    error: visitorLogError
+                };
             }
         });
     }

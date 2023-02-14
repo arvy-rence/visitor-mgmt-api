@@ -41,3 +41,10 @@ export const getBarangayCountPerMonth = async (req: Request, res: Response): Pro
         data: await visitorLogService.getBarangayCountPerMonth()
     });
 }
+
+export const getVisitorLogsPerLocation = async (req: Request, res: Response): Promise<any> => {
+    const {date} = req.body
+    res.status(200).json({
+        data: await visitorLogService.getVisitorLogsPerLocation(date)
+    });
+}
