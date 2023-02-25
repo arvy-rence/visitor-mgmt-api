@@ -46,7 +46,7 @@ export class VisitorLogService {
     // get visitor logs for today
     getVisitorLogsForToday() {
         return __awaiter(this, void 0, void 0, function* () {
-            const dateToday = new Date(new Date().setHours(2, 0, 0, 0)).toISOString();
+            const dateToday = new Date(new Date().setHours(8, 0, 0, 0)).toISOString();
             const { data: visitorLog, error } = yield client
                 .from('visitor_log')
                 .select('*')
