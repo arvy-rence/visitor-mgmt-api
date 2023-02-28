@@ -304,52 +304,52 @@ export class VisitorLogService {
         
         switch(month) {
             case 0:
-                const {data: jan} = await client.from('barangay_jan').select('*')
+                const {data: jan} = await client.from('barangay_jan').select('*').neq('barangay', '').order('count', {ascending:false})
                 return jan
 
             case 1:
-                const {data: feb} = await client.from('barangay_feb').select('*')
+                const {data: feb} = await client.from('barangay_feb').select('*').neq('barangay', '').order('count', {ascending:false})
                 return feb
 
             case 2:
-                const {data: mar} = await client.from('barangay_mar').select('*')
+                const {data: mar} = await client.from('barangay_mar').select('*').neq('barangay', '').order('count', {ascending:false})
                 return mar
 
             case 3:
-                const {data: apr} = await client.from('barangay_apr').select('*')
+                const {data: apr} = await client.from('barangay_apr').select('*').neq('barangay', '').order('count', {ascending:false})
                 return apr
 
 
             case 4:
-                const {data: may} = await client.from('barangay_apr').select('*')
+                const {data: may} = await client.from('barangay_apr').select('*').neq('barangay', '').order('count', {ascending:false})
                 return may
 
             case 5:
-                const {data: jun} = await client.from('barangay_may').select('*')
+                const {data: jun} = await client.from('barangay_may').select('*').neq('barangay', '').order('count', {ascending:false})
                 return jun
 
             case 6:
-                const {data: jul} = await client.from('barangay_jun').select('*')
+                const {data: jul} = await client.from('barangay_jun').select('*').neq('barangay', '').order('count', {ascending:false})
                 return jul
 
             case 7:
-                const {data: aug} = await client.from('barangay_jul').select('*')
+                const {data: aug} = await client.from('barangay_jul').select('*').neq('barangay', '').order('count', {ascending:false})
                 return aug
 
             case 8:
-                const {data: sept} = await client.from('barangay_aug').select('*')
+                const {data: sept} = await client.from('barangay_aug').select('*').neq('barangay', '').order('count', {ascending:false})
                 return sept
 
             case 9:
-                const {data: oct} = await client.from('barangay_sep').select('*')
+                const {data: oct} = await client.from('barangay_sep').select('*').neq('barangay', '').order('count', {ascending:false})
                 return oct
 
             case 10:
-                const {data: nov} = await client.from('barangay_oct').select('*')
+                const {data: nov} = await client.from('barangay_oct').select('*').neq('barangay', '').order('count', {ascending:false})
                 return nov
 
             case 11:
-                const {data: dec} = await client.from('barangay_nov').select('*')
+                const {data: dec} = await client.from('barangay_nov').select('*').neq('barangay', '').order('count', {ascending:false})
                 return dec
         }
     }
@@ -360,7 +360,6 @@ export class VisitorLogService {
             .from('visitor_log')
             .select('location')
             .gte('created_at', dateEntered)
-
         let counts: any = {
             entrance: 0,
             childrensArea: 0,

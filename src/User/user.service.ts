@@ -7,7 +7,8 @@ export class UserService {
         const { data: users, error } = await client
             .from("user")
             .select("*")
-            .order("full_name", { ascending: true });
+            .neq('full_name', null)
+            
         if (error === null) {
             return users;
         } else {

@@ -319,40 +319,40 @@ export class VisitorLogService {
             const month = new Date().getMonth();
             switch (month) {
                 case 0:
-                    const { data: jan } = yield client.from('barangay_jan').select('*');
+                    const { data: jan } = yield client.from('barangay_jan').select('*').neq('barangay', '').order('count', { ascending: false });
                     return jan;
                 case 1:
-                    const { data: feb } = yield client.from('barangay_feb').select('*');
+                    const { data: feb } = yield client.from('barangay_feb').select('*').neq('barangay', '').order('count', { ascending: false });
                     return feb;
                 case 2:
-                    const { data: mar } = yield client.from('barangay_mar').select('*');
+                    const { data: mar } = yield client.from('barangay_mar').select('*').neq('barangay', '').order('count', { ascending: false });
                     return mar;
                 case 3:
-                    const { data: apr } = yield client.from('barangay_apr').select('*');
+                    const { data: apr } = yield client.from('barangay_apr').select('*').neq('barangay', '').order('count', { ascending: false });
                     return apr;
                 case 4:
-                    const { data: may } = yield client.from('barangay_apr').select('*');
+                    const { data: may } = yield client.from('barangay_apr').select('*').neq('barangay', '').order('count', { ascending: false });
                     return may;
                 case 5:
-                    const { data: jun } = yield client.from('barangay_may').select('*');
+                    const { data: jun } = yield client.from('barangay_may').select('*').neq('barangay', '').order('count', { ascending: false });
                     return jun;
                 case 6:
-                    const { data: jul } = yield client.from('barangay_jun').select('*');
+                    const { data: jul } = yield client.from('barangay_jun').select('*').neq('barangay', '').order('count', { ascending: false });
                     return jul;
                 case 7:
-                    const { data: aug } = yield client.from('barangay_jul').select('*');
+                    const { data: aug } = yield client.from('barangay_jul').select('*').neq('barangay', '').order('count', { ascending: false });
                     return aug;
                 case 8:
-                    const { data: sept } = yield client.from('barangay_aug').select('*');
+                    const { data: sept } = yield client.from('barangay_aug').select('*').neq('barangay', '').order('count', { ascending: false });
                     return sept;
                 case 9:
-                    const { data: oct } = yield client.from('barangay_sep').select('*');
+                    const { data: oct } = yield client.from('barangay_sep').select('*').neq('barangay', '').order('count', { ascending: false });
                     return oct;
                 case 10:
-                    const { data: nov } = yield client.from('barangay_oct').select('*');
+                    const { data: nov } = yield client.from('barangay_oct').select('*').neq('barangay', '').order('count', { ascending: false });
                     return nov;
                 case 11:
-                    const { data: dec } = yield client.from('barangay_nov').select('*');
+                    const { data: dec } = yield client.from('barangay_nov').select('*').neq('barangay', '').order('count', { ascending: false });
                     return dec;
             }
         });
