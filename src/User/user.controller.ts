@@ -6,9 +6,16 @@ import {CreateUserDTO} from "./user.model.js";
 const userService: UserService = new UserService();
 
 export const getAllUsers = async (req: Request, res: Response): Promise<any> => {
-    res.status(200).json({
-        data: await userService.getAllUsers()
-    });
+    if (req.query.token === 'adminpanel') {
+        res.status(200).json({
+            data: await userService.getAllUsers()
+        });    
+    } else {
+        res.status(403).json({
+            message: "Forbidden to access this resource"
+        })
+    }
+    
 }
 
 export const createUser = async (req: Request<{}, {}, CreateUserDTO>, res: Response): Promise<any> => {

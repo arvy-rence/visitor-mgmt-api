@@ -10,9 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { UserService } from "./user.service.js";
 const userService = new UserService();
 export const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).json({
-        data: yield userService.getAllUsers()
-    });
+    if (req.query.token === 'adminpanel') {
+        res.status(200).json({
+            data: yield userService.getAllUsers()
+        });
+    }
+    else {
+        res.status(403).json({
+            message: "Forbidden to access this resource"
+        });
+    }
 });
 export const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield userService.updateUserInfo(req.body);
